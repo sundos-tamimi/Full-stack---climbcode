@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #eaf1e1;
+            color: #555;
+            padding: 0;
+            margin: 0;
+        }
+        #name{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: #518551;
+        }
+        header  {
+            width: 100%;
+            padding: 10px 100px;
+            text-align: left;
+            background-color: #f4faed;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+           
+        }
+        img {
+            max-width: 200px;
+            height: auto;
+           
+        }
+        .Skills , .Experience , .Education , .Hobbies {
+            padding: 20px ;
+            font-weight: bold;
+            color: #518551;
+           
+        }
+        dd{
+           color: #2e4d2e; 
+           background-attachment: fixed;
+        }
+        dd::before {
+            content: "- ";
+            color: #83b683;
+            
+        }
+        label,.contact{
+            color: #426b42;
+        }
+        .submit{
+            background-color: #518551;
+            color: #9fce9f;
+        }
+       
+    </style>
+ </head>
+
+<body>
+   
+    <header>
+       <div id ="Head">
+        <h1 id="name">Sundus Tamimi </h1><br>
+       </div>
+       <div class="div1 ">
+            <img class="img" src="C:\Users\HP\Desktop\pic.jpeg" alt="Sundus pic"><br>
+            <span>
+                <br><a href="https://www.linkedin.com/feed/" target="_blank">LinkedIn</a> <br>
+                <a href="https://github.com/" target="_blank">Github</a> 
+            </span>
+           
+       </div>
+       <button id="btn"> Click to know me !!! </button>
+    </header>
+
+       
+    <div id="div2">
+        <dl>
+            <button id ="toggleButton"> Show Experience</button>
+            <div id ="ex">
+                <dt  class="Experience">Experience</dt>
+                <dd >Presenting activities and training through virtual reality, VrStation  | 2023 </dd>
+                <dd >Team Leader of Activities, Sales Representative at Golan Telecom  | 2022-2023  </dd>
+                
+            </div>
+           
+            <hr>
+
+            <dt class="Education">Education</dt>
+            <dd>Software Engineer, ORT College  | 2020-2022 </dd>
+            <dd>Preparatory Program for Hebrew Language Acquisition for Academics, College of Management 
+                | 2019-2020
+            </dd>
+            <dd>High School Diploma , Al Shabbat Secondary School, Jerusalem  | 2016-2019</dd>
+            <dd>Courses in Basic Java and Android, Burj Al-Luqluq Social Center Society | 2015-2016</dd>
+    
+            <hr>
+            
+            <dt class="Skills">Skills</dt>
+            <dd>C#, JavaScript, Java, HTML, CSS, Python,Angular</dd>
+            <dd>SQL Server , MongoDB</dd>
+            <dd>Microsoft Office: PowerPoint , Word , Excel , Access </dd>
+
+            <hr>
+
+            <dt class="Hobbies">Hobbies</dt>
+            <dd>swiming</dd>
+            <dd>Traveling</dd>
+            <dd>Coding</dd>
+            <dd>drawing</dd>
+
+        </dl>
+    </div>
+    <div id=" div3 ">
+        <form>
+            <fieldset>
+            <legend class="contact">Contact me </legend>
+                <label for="Firstname">Username:</label><br>
+                <input type="text" id="Fistname" name="Fname" placeholder="Enter Your F-Name"><br>
+                <label for="Lastname">Last name:</label><br>
+                <input type="text" id="Lastname" name="Lname" placeholder="Enter Your L-Name"><br>
+                <label for="tel" type="telphone ">Phone Number</label><br>
+                <input type="text" id="telphone" name="tel"  pattern="\d*" placeholder="Enter Your phone number"><br>
+                <label for="email" type="email">Email</label><br>
+                <input type="text" id="email" name="email" placeholder="Enter Your Email"><br><br>
+
+                <label for="country">Choose a country:</label>
+                     <select name="country" id="country">
+                          <option value="Palestine">Palestine</option>
+                          <option value="Turkey">Turkey</option>
+                          <option value="Jordan">Jordan</option>
+                          <option value="India">India</option>
+                          <option value="China">China</option>
+                        </select> <br>
+                <label for="time">Available hours :</label>
+                <input type="text" id="time" name="time"> <br><br>
+                <textarea name="description" id="description">description what you need </textarea><br><br>
+                <input class="submit"  type="submit" value="Submit">   
+
+                    
+            </fieldset>
+        </form>
+    </div>
+  
+
+    <script>
+        const myDiv = document.getElementById('Head');
+        myDiv.addEventListener('mouseover', function() {
+            myDiv.style.backgroundColor = 'lightgray';
+        });
+
+        const facts = [
+            "I love painting in my free time!" , 
+            "I love to learn more languges"
+        ];
+        const factButton = document.getElementById('btn');
+        factButton.addEventListener('click', function() {
+            alert(facts);
+        });
+
+        function validateForm(event) {
+            
+            event.preventDefault();
+
+            const firstName = document.getElementById('Firstname').value;
+            const lastName = document.getElementById('Lastname').value;
+            const phone = document.getElementById('telphone').value;
+            const email = document.getElementById('email').value;
+            const time = document.getElementById('time').value;
+
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+           
+            const phonePattern = /^\d{7,14}$/;
+
+            let errorMessage = '';
+
+            if (!firstName || /^\s*$/.test(firstName)) {
+                errorMessage += 'Please enter a valid first name without spaces only.\n';
+            }
+
+            if (!lastName || /^\s*$/.test(lastName)) {
+                errorMessage += 'Please enter a valid last name without spaces only.\n';
+            }
+
+            if (!phone || !phonePattern.test(phone)) {
+                errorMessage += 'Please enter a valid phone number (only digits, no spaces).\n';
+            }
+
+            if (!email || !emailPattern.test(email)) {
+                errorMessage += 'Please enter a valid email address.\n';
+            }
+
+            if (!time || /^\s*$/.test(time)) {
+                errorMessage += 'Please specify your available hours without spaces only.\n';
+            }
+
+           
+            if (errorMessage !== '') {
+                document.getElementById('error-message').textContent = errorMessage;
+            } else {
+                
+                document.getElementById('error-message').textContent = '';
+                alert('Form submitted successfully!');
+                
+               document.getElementById('contactForm').submit();
+            }
+        }
+
+        
+        document.getElementById('contactForm').addEventListener('submit', validateForm);
+    
+        const toggleButton = document.getElementById('toggleButton');
+        const dd = document.getElementById('ex');
+
+        
+        toggleButton.addEventListener('click', function() {
+            if (dd.style.display === 'none') {
+                dd.style.display = 'block'; 
+                
+                toggleButton.textContent = 'Hide'; 
+            } else {
+                dd.style.display = 'none';
+                toggleButton.textContent = 'Show'; 
+            }
+        });
+
+    </script>
+</body>
+</html>
