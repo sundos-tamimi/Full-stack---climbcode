@@ -76,7 +76,7 @@
        
     <div id="div2">
         <dl>
-            <button id ="toggleButton"> Show Experience</button>
+            <button id ="toggleButton"> Hide Experience</button>
             <div id ="ex">
                 <dt  class="Experience">Experience</dt>
                 <dd >Presenting activities and training through virtual reality, VrStation  | 2023 </dd>
@@ -216,11 +216,10 @@
         toggleButton.addEventListener('click', function() {
             if (dd.style.display === 'none') {
                 dd.style.display = 'block'; 
-                
-                toggleButton.textContent = 'Hide'; 
+                toggleButton.textContent = 'Show'; 
             } else {
                 dd.style.display = 'none';
-                toggleButton.textContent = 'Show'; 
+                toggleButton.textContent = 'Hide'; 
             }
         });
 
