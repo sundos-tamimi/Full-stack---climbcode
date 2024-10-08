@@ -6,12 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     <style>
-        body {
+        body.light-mode{
             font-family: 'Poppins', sans-serif;
             background-color: #eaf1e1;
             color: #555;
             padding: 0;
             margin: 0;
+        }
+        body.dark-mode {
+            background-color: black;
+            color: white;
         }
         #name{
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -30,7 +34,7 @@
             height: auto;
            
         }
-        .Skills , .Experience , .Education , .Hobbies {
+        .Skills , .Experience , .Education , .Hobbies ,.achievementsList{
             padding: 20px ;
             font-weight: bold;
             color: #518551;
@@ -54,10 +58,9 @@
         }
        
     </style>
- </head>
+</head>
 
-<body>
-   
+<body class="light-mode" >
     <header>
        <div id ="Head">
         <h1 id="name">Sundus Tamimi </h1><br>
@@ -73,10 +76,10 @@
        <button id="btn"> Click to know me !!! </button>
     </header>
 
-       
+    <button onclick="toggleTheme()"> Black | White </button>
     <div id="div2">
         <dl>
-            <button id ="toggleButton"> Hide Experience</button>
+            <button id="btn-ex" onclick="toggleVisibility()"> Hide Experience</button>
             <div id ="ex">
                 <dt  class="Experience">Experience</dt>
                 <dd >Presenting activities and training through virtual reality, VrStation  | 2023 </dd>
@@ -86,6 +89,8 @@
            
             <hr>
 
+            <button id="btn-ed" onclick="toggleVisibility()"> Hide Education</button>
+            <div id ="ed">
             <dt class="Education">Education</dt>
             <dd>Software Engineer, ORT College  | 2020-2022 </dd>
             <dd>Preparatory Program for Hebrew Language Acquisition for Academics, College of Management 
@@ -93,22 +98,40 @@
             </dd>
             <dd>High School Diploma , Al Shabbat Secondary School, Jerusalem  | 2016-2019</dd>
             <dd>Courses in Basic Java and Android, Burj Al-Luqluq Social Center Society | 2015-2016</dd>
-    
+            </div>
+
             <hr>
             
+            <button id="btn-sk" onclick="toggleVisibility()"> Hide Skills</button>
+            <div id ="sk">
             <dt class="Skills">Skills</dt>
             <dd>C#, JavaScript, Java, HTML, CSS, Python,Angular</dd>
             <dd>SQL Server , MongoDB</dd>
             <dd>Microsoft Office: PowerPoint , Word , Excel , Access </dd>
+            </div>
 
             <hr>
 
+            <button id="btn-ho" onclick="toggleVisibility()"> Hide Hobbies</button>
+            <div id ="ho">
             <dt class="Hobbies">Hobbies</dt>
             <dd>swiming</dd>
             <dd>Traveling</dd>
             <dd>Coding</dd>
             <dd>drawing</dd>
+            </div>
 
+            <hr>
+            <div>
+                <dt class="achievementsList">AchievementsList</dt>
+                <ul id="achievementsList">
+                    <li> I achieved second place in the Innovation and Creativity competition. </li>
+                </ul>
+                <input type="text" id="newAchievement" placeholder="add a new achievement" />
+                <button onclick="addAchievement()">add achievement</button>
+    
+            </div>
+            
         </dl>
     </div>
     <div id=" div3 ">
@@ -205,24 +228,75 @@
                document.getElementById('contactForm').submit();
             }
         }
-
-        
         document.getElementById('contactForm').addEventListener('submit', validateForm);
-    
-        const toggleButton = document.getElementById('toggleButton');
-        const dd = document.getElementById('ex');
 
-        
-        toggleButton.addEventListener('click', function() {
-            if (dd.style.display === 'none') {
-                dd.style.display = 'block'; 
-                toggleButton.textContent = 'Show'; 
-            } else {
-                dd.style.display = 'none';
-                toggleButton.textContent = 'Hide'; 
+        function toggleVisibility() {
+            const sectionEx = document.getElementById('ex');
+            const btnEx = document.getElementById('btn-ex');
+
+            const sectionEd = document.getElementById('ed');
+            const btnEd = document.getElementById('btn-ed');
+
+            const sectionsk = document.getElementById('sk');
+            const btnsk = document.getElementById('btn-sk');
+
+            const sectionho = document.getElementById('ho');
+            const btnho = document.getElementById('btn-ho');
+           
+            if (sectionEx.style.display === 'none') {
+                sectionEx.style.display = 'block';
+                btnEx.textContent = 'Hide Experience'; 
             }
-        });
+             else {
+                sectionEx.style.display = 'none';
+                btnEx.textContent = 'Show Experience'; 
+            }
+            
+            if(sectionEd.style.display === 'none')
+            {
+                sectionEd.style.display = 'block' ;
+                btnEd.textContent = 'Hide Education';
+            }
+            else{
+                sectionEd.style.display = 'none';
+                btnEd.textContent = 'Show Education';
+            }
+            
+            if(sectionsk.style.display === 'none'){
+                sectionsk.style.display = 'block' ;
+                btnsk.textContent = 'Hide Skills';
+            }
+            else{
+                sectionsk.style.display = 'none';
+                btnsk.textContent = 'Show Skills'; 
+            }
+            
+            if(sectionho.style.display === 'none'){
+                sectionho.style.display = 'block' ;
+                btnho.textContent = 'Hide Hoppies';
+            }
+            else{
+                sectionho.style.display = 'none';
+                btnho.textContent = 'Show Hoppies'; 
+            }
 
+        }
+        
+        function toggleTheme() { 
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+        }
+      
+        function addAchievement() {
+            const achievementText = document.getElementById('newAchievement').value;
+            if (achievementText.trim() !== '') {
+                const listItem = document.createElement('li');
+                listItem.textContent = achievementText;
+                document.getElementById('achievementsList').appendChild(listItem);
+                document.getElementById('newAchievement').value = ''; 
+            }
+        }
     </script>
 </body>
 </html>
